@@ -16,7 +16,7 @@
 
 ## Requirements
 #### Hardware
-Due to limited memory, we had to slit the functionality of the system between 2 microcontrollers. This project works on any combination of CircuitPython supported boards of which at least one has built-in wifi.
+Due to limited memory, we had to split the functionality of the system between 2 microcontrollers. This project works on any combination of CircuitPython supported boards of which at least one has built-in wifi.
 
 - Microcontroller 1 (Raspberry Pi Pico): Holds reads sensors and keeps the logic via a state machine. Sensors attached:
     - SHT40 temperature sensor (I2C)
