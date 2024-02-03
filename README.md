@@ -18,7 +18,7 @@
 #### Hardware
 Due to limited memory, we had to split the functionality of the system between 2 microcontrollers. This project works on any combination of CircuitPython supported boards of which at least one has built-in wifi.
 
-- Microcontroller 1 (Raspberry Pi Pico): Holds reads sensors and keeps the logic via a state machine. Sensors attached:
+- Microcontroller 1 (Raspberry Pi Pico): manages sensors' reading and keeps the logic via a state machine. Sensors attached:
     - SHT40 temperature sensor (I2C)
     - RC522 RFID reader (SPI)
     - 2 Servo motors via a 3.3V - 5V level shifter
