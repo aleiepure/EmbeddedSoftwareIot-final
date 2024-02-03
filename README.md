@@ -75,14 +75,14 @@ Non wifi enabled board (Raspberry Pico)
 ## Getting started
 1. Follow [these instructions](https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython) to flash CircuitPython onto your boards.
 
-    > [!WARNING]  
-    > Pay attention to download the correct UF2 file for your specific board(s).
+> [!WARNING]  
+> Pay attention to download the correct UF2 file for your specific board(s).
 
-    > [!TIP]  
-    > If both microcontrollers are connected to a computer together, sometimes one of the virtual USB drives will be called `CIRCUITPY1` instead of the usual `CIRCUITPY`. We suggest renaming the drives to names like `WIFI` and `NOWIFI` to avoid confusion.
+> [!TIP]  
+> If both microcontrollers are connected to a computer together, sometimes one of the virtual USB drives will be called `CIRCUITPY1` instead of the usual `CIRCUITPY`. We suggest renaming the drives to names like `WIFI` and `NOWIFI` to avoid confusion.
 
-    > [!NOTE]  
-    > This repo targets circuitpython 8.2.8, the latest version at the time of writing. If the downloaded version is more recent, make sure to replace the libraries with the ones from [adafruit's bundle](https://circuitpython.org/libraries).
+> [!NOTE]  
+> This repo targets CircuitPython 8.2.8, the latest version at the time of writing. If the downloaded version is more recent, make sure to replace the libraries with the ones from [adafruit's bundle](https://circuitpython.org/libraries).
 
 2. Empty both virtual USB drives and copy the files from this repo. The ones from the `WIFI/` folder go in the wifi-enabled board, the `NOWIFI/` in the non-wifi-enabled board.
 
@@ -97,11 +97,11 @@ Non wifi enabled board (Raspberry Pico)
 
     NTFYSH_URL = "https://ntfy.sh/<anything you want>"
     ```
-    > [!NOTE]  
-    > See [OpenWeather's website](https://home.openweathermap.org/api_keys) to create your API key.
+> [!NOTE]  
+> See [OpenWeather's website](https://home.openweathermap.org/api_keys) to create your API key.
 
-    > [!NOTE]  
-    > The [ntfy.sh](https://ntfy.sh) url can be anything you like. Be creative as it must be unique for all users of the service.
+> [!NOTE]  
+> The [ntfy.sh](https://ntfy.sh) url can be anything you like. Be creative as it must be unique for all users of the service.
 
 4. Follow [this link](https://docs.ntfy.sh/#step-1-get-the-app) to setup the [ntfy.sh](https://ntfy.sh) app. Make sure to set it up with the same URL chose in step 3.
 
