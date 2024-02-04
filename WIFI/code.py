@@ -1,6 +1,6 @@
 ########################################################
 #
-#   Embedded Systems for IoT, University of Trento
+#   Embedded Software for IoT, University of Trento
 #   A.Y. 2023/2024
 #   Final project
 #

@@ -11,7 +11,7 @@
 </div>
 
 ## Video
-[<img src="https://img.youtube.com/vi/SmFSCTbaPJA/hqdefault.jpg" width="320" height="240"/>](https://www.youtube.com/embed/SmFSCTbaPJA)\
+[<img src="https://img.youtube.com/vi/qr0Ba-soSlc/hqdefault.jpg" width="320" height="240"/>](https://www.youtube.com/embed/qr0Ba-soSlc)\
 [Presentation](https://docs.google.com/presentation/d/1cns5Rj6kbINs13zt8QyAXymT49cW8snj6NpNNDN8Nfs/edit?usp=sharing)
 
 ## Requirements
