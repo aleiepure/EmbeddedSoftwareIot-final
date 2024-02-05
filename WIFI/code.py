@@ -38,6 +38,7 @@ connected = False
 while not connected:
     try:
         wifi.radio.connect(os.getenv("WIFI_SSID"), os.getenv("WIFI_PASSWORD"))
+        connected = True
     except ConnectionError:
         logger.error(
             f'WiFi: failed to connect to {os.getenv("WIFI_SSID")}, retrying in 5 sec...')
@@ -132,8 +133,7 @@ def response_weather():
     )
 
     # Send data over UART
-    uart.write(bytes(
-        f"!W:{'Clear'}^{cpy_datetime.datetime(2009, 1, 1, hour=6, minute=0, second=0)}^{cpy_datetime.datetime(2009, 1, 1, hour=18, minute=0, second=0)};", "ascii"))
+    uart.write(bytes(f"!W:{weather}^{sunset}^{sunrise};", "ascii"))
     logger.debug(f"UART <-- !W:{weather}^{sunrise}^{sunset};")
 
 
@@ -147,12 +147,12 @@ def response_time():
 def main():
     """Main loop of the program. Reads UART lines for requests and sends the 
     appropriate responses."""
-    
+
     request_started = False
-    
+
     # Keep listening for requests
     while True:
-        
+
         # Read byte from UART
         byte_read = uart.read(1)
 
@@ -166,14 +166,14 @@ def main():
             continue
 
         if request_started:
-            
+
             # Check for end of request. Don't save ';'.
             if byte_read == b";":
                 request_started = False
 
                 # Parse request
                 request_parts = "".join(request).split("^")
-                
+
                 # Weather request
                 if request_parts[0].startswith("W"):
                     response_weather()
@@ -189,7 +189,7 @@ def main():
                     tags = request_parts[2]
                     send_notification(title=title, data=data, tags=tags)
                     uart.write(bytes(f"!N;", "ascii"))
-            
+
             # Else, accumulate response bytes.
             else:
                 request.append(chr(byte_read[0]))

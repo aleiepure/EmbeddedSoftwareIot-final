@@ -30,8 +30,6 @@ class StateMachine:
     """State machine class. It is responsible for switching between states."""
 
     dog_in = True
-    rfid_prev_data = ""
-    rfid_prev_time = rfid_timeout = 1
 
     def __init__(self):
 
@@ -181,11 +179,11 @@ class StateMachine:
         # Send request
         hardware.uart.write(bytes("?W;", "ascii"))
         logger.info("Sent weather request, waiting for response...")
-        
+
         # Wait for response
         done = False
         while not done:
-            
+
             # Read byte from UART
             byte_read = hardware.uart.read(1)
 
@@ -199,7 +197,7 @@ class StateMachine:
                 continue
 
             if response_started:
-                
+
                 # Check for end of response. Don't save ';'.
                 if byte_read == b";":
                     response_started = False
@@ -218,7 +216,7 @@ class StateMachine:
                         sunset_date = cpy_datetime.fromisoformat(
                             response_parts[2])
                         done = True
-                
+
                 # Else, accumulate response bytes.
                 else:
                     response.append(chr(byte_read[0]))
@@ -229,7 +227,7 @@ class StateMachine:
         """
         Sends request for sending a notification to the other microcontroller via UART.
         Does not wait for a response. Format: '?N:title^data^tags;'
-        
+
         Args:
             title: str, title of the notification
             data: str, data of the notification
@@ -237,7 +235,7 @@ class StateMachine:
         Returns:
             None
         """
-        
+
         hardware.uart.write(bytes(f"?N:{title}^{data}^{tags};", "ascii"))
         self.logger.info(f"Sent notification request: {title}, {data}, {tags}")
 
@@ -246,7 +244,7 @@ class StateMachine:
         Tries reading an RFID tag for 5 seconds. It returns 200 if the correct
         tag is detected, 400 if a wrong tag is detected and 500 if no tag is
         detected.
-        
+
         Args:
             None
         Returns:
@@ -256,15 +254,15 @@ class StateMachine:
         # Start timer
         self.start_monoton = py_time.monotonic()
         self.logger.info('Started RFID scan...')
-        
+
         # Keep reading for 5 seconds
         while py_time.monotonic() - self.start_monoton < 5:
-            
+
             # Check for a card
             (status, _) = hardware.rfid.request(hardware.rfid.REQALL)
 
             if status == hardware.rfid.OK:
-                
+
                 # Card detected, start reading
                 self.logger.debug('RFID: a card detected, start reading...')
                 (status, raw_uid) = hardware.rfid.anticoll()
@@ -293,16 +291,16 @@ class StateMachine:
     def door_open(self) -> bool:
         """
         Reads the force sensor for 5 seconds to determine if the door was open.
-        
+
         Args:
             None
         Returns:
             bool, True if the door was open, False otherwise
         """
-        
+
         # Start timer
         start_time = py_time.monotonic()
-        
+
         # Count times the door was open
         times_opened = 0
         while py_time.monotonic() - start_time < 5:
@@ -318,7 +316,7 @@ class StateMachine:
     def lock_door_in(self, lock: bool) -> None:
         """
         Locks or unlocks the door inwards.
-        
+
         Args:
             lock: bool, True to lock, False to unlock
         Returns:
@@ -335,7 +333,7 @@ class StateMachine:
     def lock_door_out(self, lock: bool) -> None:
         """
         Locks or unlocks the door outwards.
-        
+
         Args:
             lock: bool, True to lock, False to unlock
         Returns:
